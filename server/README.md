@@ -15,12 +15,10 @@
 
 ## Jenkins use Branching
 
-- Jenkins에 Specific Branch는 브랜치를 결정한다기 보다는 -> 어디 브랜치에서 SCM을 실행할거냐
-- 즉, 원하는 Branch에서만 실행한다는 다른 개념임
-
 1. Jenkins에서 진행하는 Branching
 
 ![jenkins_parameter](./public/jenkins_git_paramter.png)
+![deploy](./public/deploy.png)
 
 - <a href="https://plugins.jenkins.io/git-parameter/">Jenkins Git Parameter Document </a>
 
