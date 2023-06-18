@@ -11,7 +11,7 @@ pipeline {
                 slackSend (
                     channel: params.NOTIFICATION,
                     color : "good",
-                    message: "----------------- ${env.GIT_BRANCH}-----------------"
+                    message: "----------------- ${env.GIT_REF}-----------------"
                 )
             }
         }
