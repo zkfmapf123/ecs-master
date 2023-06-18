@@ -15,14 +15,17 @@
 
 ## Jenkins use Branching
 
-1. Jenkins에서 진행하는 Branching
+1. GitHub에서 브랜칭 할 Branch들을 설정한다. (이때 필요한 값들 -> Remote로 올라가게끔 설정)
 
-![jenkins_parameter](./public/jenkins_git_paramter.png)
-![deploy](./public/deploy.png)
+![branching](./public/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-06-19%20%EC%98%A4%EC%A0%84%202.50.11.png)
 
-- <a href="https://plugins.jenkins.io/git-parameter/">Jenkins Git Parameter Document </a>
+2. Jenkins pipeline을 설정한 후 한번 빌드를 한다.
 
-2. Github에서 Branching 설정하는 법
+![build](./public/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-06-19%20%EC%98%A4%EC%A0%84%202.51.30.png)
+
+3. master는 올라가지 않고, deploy/dev, deploy/qa만 올라간다.
+
+4. Github에서 Branching 설정하는 법
 
 ## Jenkins pipeline use SCM
 
