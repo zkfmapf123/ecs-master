@@ -11,6 +11,10 @@
 3. Jenkins Plugin 중 Slack Notification 추가
 4. Config 에서 Slack 추가 (Secret Text로 구성)
 
+## Jenkins use Branching
+
+![branch](./public/branching.png)
+
 ![slack](./public/slack.png)
 
 ## Jenkins pipeline use SCM
