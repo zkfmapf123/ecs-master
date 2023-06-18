@@ -4,6 +4,15 @@
 
 - 장난감용
 
+## Jenkin use Slack
+
+1. Slack 채널을 생성
+2. Slack 앱에 Jenkins ci 구성 추가
+3. Jenkins Plugin 중 Slack Notification 추가
+4. Config 에서 Slack 추가 (Secret Text로 구성)
+
+![slack](./public/slack.png)
+
 ## Jenkins pipeline use SCM
 
 1. Pipeline > SCM으로 설정 > URL + Github Hooks 설정

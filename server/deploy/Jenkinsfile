@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: "NOTIFICATION", defaultValue:"#jenkins-slack-notification", description: "slack notification")
+    }
+
+    stages {
+        stage("test") {
+            steps {
+                slackSend (
+                    channel: params.NOTIFICATION,
+                    color : "good",
+                    message: "----------------- Jenkins start : ${env.BUILD_ID} -----------------"
+                )
+            }
+        }
+    }
+}
