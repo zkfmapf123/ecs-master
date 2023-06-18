@@ -11,7 +11,7 @@ pipeline {
                 slackSend (
                     channel: params.NOTIFICATION,
                     color : "good",
-                    message: "----------------- Jenkins start : ${env.BUILD_ID} ${env.BRANCH_NAME}-----------------"
+                    message: "----------------- Jenkins start : ${env.BUILD_ID} ${env.GIT_BRANCH}-----------------"
                 )
             }
         }
