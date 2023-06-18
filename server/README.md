@@ -12,10 +12,11 @@
 4. Config 에서 Slack 추가 (Secret Text로 구성)
 
 ![slack](./public/slack.png)
-<<<<<<< HEAD
-=======
 
 ## Jenkins use Branching
+
+- Jenkins에 Specific Branch는 브랜치를 결정한다기 보다는 -> 어디 브랜치에서 SCM을 실행할거냐
+- 즉, 원하는 Branch에서만 실행한다는 다른 개념임
 
 1. Jenkins에서 진행하는 Branching
 
@@ -24,7 +25,6 @@
 - <a href="https://plugins.jenkins.io/git-parameter/">Jenkins Git Parameter Document </a>
 
 2. Github에서 Branching 설정하는 법
->>>>>>> master
 
 ## Jenkins pipeline use SCM
 
