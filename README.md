@@ -66,3 +66,7 @@
 
   - EC2 Type
     - 그냥 EC2 + Auto Scaling
+
+## Reference
+
+![Jenkins Branching](./server/README.md)
