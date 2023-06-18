@@ -11,11 +11,17 @@
 3. Jenkins Plugin 중 Slack Notification 추가
 4. Config 에서 Slack 추가 (Secret Text로 구성)
 
+![slack](./public/slack.png)
+
 ## Jenkins use Branching
 
-![branch](./public/branching.png)
+1. Jenkins에서 진행하는 Branching
 
-![slack](./public/slack.png)
+![jenkins_parameter](./public/jenkins_git_paramter.png)
+
+- <a href="https://plugins.jenkins.io/git-parameter/">Jenkins Git Parameter Document </a>
+
+2. Github에서 Branching 설정하는 법
 
 ## Jenkins pipeline use SCM
 
