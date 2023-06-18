@@ -6,17 +6,34 @@ pipeline {
     }
 
     stages {
-        stage("test") {
+        stage("what is git branch") {
             steps {
                 slackSend (
                     channel: params.NOTIFICATION,
                     color : "good",
-                    message: "----------------- Jenkins start : ${env.BUILD_ID} ${env.GIT_BRANCH}-----------------"
+                    message: "----------------- ${env.GIT_BRANCH}-----------------"
+                )
+            }
+        }
+
+        stage("test") {
+            when {
+                expression {
+                    return env.BRANCH_NAME =~ /^deploy\//
+                }
+            }
+
+            steps {
+                slackSend (
+                    channel: params.NOTIFICATION,
+                    color : "good",
+                    message: "----------------- SUCCESS : ${env.BUILD_ID} ${env.GIT_BRANCH}-----------------"
                 )
             }
         }
 
         stage("echo") {
+
             steps {
                 echo "hello world "
             }
