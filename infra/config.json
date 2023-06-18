@@ -28,7 +28,7 @@
           "from_port": 8080,
           "to_port": 8080,
           "protocol": "tcp",
-          "cidr_block": ["221.151.163.17/32"]
+          "cidr_block": ["0.0.0.0/0"]
         }
       ]
     }
