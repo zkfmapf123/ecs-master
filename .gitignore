@@ -1,2 +1,7 @@
+# Terraform
 .terraform.lock.hcl
 .terraform
+
+# Server
+node_modules
+dist
