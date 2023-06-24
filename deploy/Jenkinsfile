@@ -1,7 +1,32 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: "CD_CHANNEL", defaultValue: "#jenkins-slack-notification", description: "cd channel")
+    }
+
+    environment {
+        // Common
+        AWS_CREDENTIAL="aws-credential"
+        REGION="ap-northeast-2"
+
+        //Frontend
+        FRONT_ECR="182024812696.dkr.ecr.${env.REGION}.amazonaws.com/front-repo"
+
+        //Backend
+        BACKEND_ECR="182024812696.dkr.ecr.${env.REGION}.amazonaws.com/backend-repo"
+    }
+
     stages {
+        stage("CD Start") {
+            steps {
+                slackSend (
+                    channel: params.CD_CHANNEL,
+                    color: "good",
+                    message: "------------ ${env.BUILD_ID} Jenkins Start ${env.GIT_BRANCH} ----------"
+                )
+            }
+        }
 
         stage("build image"){
             steps {
@@ -9,13 +34,53 @@ pipeline {
                     def BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
 
                     if (BRANCH == "frontend") {
-                        echo "===== frontend ==== "
+                        dir("front") {
+                            docker.build("${env.FRONT_ECR}:${BRANCH}-${env.BUILD_ID}").tag("${BRANCH}-latest")
+                            docker.withRegistry("https://${env.FRONT_ECR}", "ecr:${env.REGION}:${env.AWS_CREDENTIAL}") {
+                                docker.image("${env.FRONT_ECR}:${BRANCH}-${env.BUILD_ID}").push()
+                                docker.image("${env.FRONT_ECR}:${BRANCH}-latest").push()
+                            }
+                        }
                     }else if(BRANCH == "backend"){
-                        echo "===== backend ==== "
+                        dir("server") {
+                            docker.build("${env.BACKEND_ECR}:${BRANCH}-${env.BUILD_ID}").tag("${BRANCH}-latest")
+                            docker.withRegistry("https://${env.BACKEND_ECR}", "ecr:${env.REGION}:${env.AWS_CREDENTIAL}") {
+                                docker.image("${env.BACKEND_ECR}:${BRANCH}-${env.BUILD_ID}").push()
+                                docker.image("${env.BACKEND_ECR}:${BRANCH}-latest").push()
+                            }
+                        }
                     }else{
-                        sh exit 0   
+                        sh exit 0          
                     }
                 }
+            }
+
+            post {
+                success {
+                    slackSend (
+                        channel: params.CD_CHANNEL,
+                        color: "good",
+                        message: " ${env.BUILD_ID} Build Success ${env.GIT_BRANCH} "
+                    )
+                }
+
+                failure {
+                    slackSend (
+                        channel: params.CD_CHANNEL,
+                        color: "danger",
+                        message: " ${env.BUILD_ID} Build Failed ${env.GIT_BRANCH} "
+                    )
+                }
+            }
+        }
+
+        stage("CD End") {
+            steps {
+                slackSend (
+                    channel: params.CD_CHANNEL,
+                    color: "good",
+                    message: "------------ ${env.BUILD_ID} Jenkins End ${env.GIT_BRANCH} ----------"
+                )
             }
         }
     }
