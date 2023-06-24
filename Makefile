@@ -1,7 +1,7 @@
 push:
 	@git add .
 	@git commit -m "wip"
-	@git push origin master
+	@git push origin deploy/frontend
 
 image:
 	@docker build -f ./deploy/Dockerfile -t node:test .
