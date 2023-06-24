@@ -1,0 +1,7 @@
+{
+  "jenkins-sg": {
+    "description": "cicd to jenkins server"
+  },
+  "front-server": {},
+  "backend-server": {}
+}

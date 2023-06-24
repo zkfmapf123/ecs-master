@@ -24,3 +24,12 @@ module "vpc" {
   env         = var.env
   config_json = jsondecode(file("./config/vpc.json"))
 }
+
+#### Container #####
+module "container" {
+    source = "./modules/container"
+
+    region = var.region
+    env = var.env
+    config_json = jsondecode(file("./config/container.json"))
+}

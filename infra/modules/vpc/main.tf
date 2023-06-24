@@ -73,3 +73,21 @@ resource "aws_route_table_association" "public_association" {
   subnet_id     = each.value.id
   route_table_id = aws_route_table.public_route_table.id
 }
+
+output "id" {
+    value = aws_vpc.vpc.id
+}
+
+output "public_subnets" {
+    value = {
+        for subnet in aws_subnet.publics:
+            subnet.availability_zone => subnet.id
+    }
+}
+
+output "private_subnets" {
+    value = {
+        for subnet in aws_subnet.privates:
+            subnet.availability_zone => subnet.id
+    }
+}
