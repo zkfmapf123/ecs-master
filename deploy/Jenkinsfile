@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+        stage("what is git branch") {
+            steps {
+                echo env.GIT_BRANCH
+            }
+        }
+    }
+}
