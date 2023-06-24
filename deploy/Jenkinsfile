@@ -1,10 +1,30 @@
 pipeline {
     agent any
 
+    env {
+        GIT_BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
+    }
+
     stages {
         stage("what is git branch") {
             steps {
                 echo env.GIT_BRANCH
+            }
+        }
+
+        stage("build image"){
+            steps {
+                script {
+                    if (env.GIT_BRANCH == "origin/deploy/frontend") {
+                        echo "===== frontend ==== "
+                    }else if(env.GIT_BRANCH == "origin/deploy/backend"){
+                        echo "===== backend ===="
+                    }else{
+                        sh exit 0
+                    }
+
+
+                }
             }
         }
     }
