@@ -24,4 +24,4 @@
 
 ## Reference
 
-![Jenkins Branching](./server/README.md)
+![Jenkins](./server/README.md)
