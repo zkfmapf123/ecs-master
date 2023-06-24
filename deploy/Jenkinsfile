@@ -62,7 +62,7 @@ pipeline {
             }
         }
 
-        stage("CD Start") {
+        stage("CD End") {
             steps {
                 slackSend (
                     channel: params.CD_CHANNLE,
