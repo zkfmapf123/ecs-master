@@ -46,18 +46,18 @@ pipeline {
             post {
                 success {
                     slackSend (
-                    channel: params.CD_CHANNLE,
-                    color: "good",
-                    message: " ${env.BUILD_ID} Build Success ${env.GIT_BRANCH} "
-                )
+                        channel: params.CD_CHANNLE,
+                        color: "good",
+                        message: " ${env.BUILD_ID} Build Success ${env.GIT_BRANCH} "
+                    )
                 }
 
                 failure {
                     slackSend (
-                    channel: params.CD_CHANNLE,
-                    color: "good",
-                    message: " ${env.BUILD_ID} Build Failed ${env.GIT_BRANCH} "
-                )
+                        channel: params.CD_CHANNLE,
+                        color: "danger",
+                        message: " ${env.BUILD_ID} Build Failed ${env.GIT_BRANCH} "
+                    )
                 }
             }
         }
