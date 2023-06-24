@@ -1,7 +1,13 @@
 {
   "jenkins-sg": {
-    "description": "cicd to jenkins server"
-  },
-  "front-server": {},
-  "backend-server": {}
+    "description": "cicd to jenkins server",
+    "ingress": [
+      {
+        "from_port": 8080,
+        "to_port": 8080,
+        "protocol": "tcp",
+        "cidr_blocks": ["0.0.0.0/0"]
+      }
+    ]
+  }
 }

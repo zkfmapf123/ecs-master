@@ -7,6 +7,6 @@ locals {
     config = var.config.json
 }
 
-resource "aws_security_group" "sg" {
+resource "aws_instance" "instance" {
     
 }

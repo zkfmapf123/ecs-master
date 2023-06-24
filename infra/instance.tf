@@ -33,3 +33,13 @@ module "container" {
     env = var.env
     config_json = jsondecode(file("./config/container.json"))
 }
+
+#### Security ####
+module "security_groups" {
+    source = "./modules/security_groups"
+
+    region = var.region
+    env = var.env
+    config_json = jsondecode(file("./config/security_group.json"))
+    vpc_id = module.vpc.id
+}
