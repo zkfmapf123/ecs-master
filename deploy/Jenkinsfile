@@ -6,11 +6,15 @@ pipeline {
     }
 
     environment {
+        // Common
+        AWS_CREDENTIAL="aws-credential"
+        REGION="ap-northeast-2"
+
         //Frontend
-        FRONT_ECR="182024812696.dkr.ecr.ap-northeast-2.amazonaws.com/front-repo"
+        FRONT_ECR="182024812696.dkr.ecr.${env.REGION}.amazonaws.com/front-repo"
 
         //Backend
-        BACKEND_ECR="182024812696.dkr.ecr.ap-northeast-2.amazonaws.com/backend-repo"
+        BACKEND_ECR="182024812696.dkr.ecr.${env.REGION}.amazonaws.com/backend-repo"
     }
 
     stages {
@@ -32,10 +36,18 @@ pipeline {
                     if (BRANCH == "frontend") {
                         dir("front") {
                             docker.build("${env.FRONT_ECR}:${BRANCH}-${env.BUILD_ID}").tag("${BRANCH}-latest")
+                            docker.withRegistry("https://${env.FRONT_ECR}", "ecr:${env.REGION}:${env.AWS_CREDENTIAL}") {
+                                docker.image("${env.FRONT_ECR}:${BRANCH}-${env.BUILD_ID}").push()
+                                docker.image("${env.FRONT_ECR}:${BRANCH}-latest").push()
+                            }
                         }
                     }else if(BRANCH == "backend"){
                         dir("server") {
                             docker.build("${env.BACKEND_ECR}:${BRANCH}-${env.BUILD_ID}").tag("${BRANCH}-latest")
+                            docker.withRegistry("https://${env.BACKEND_ECR}", "ecr:${env.REGION}:${env.AWS_CREDENTIAL}") {
+                                docker.image("${env.BACKEND_ECR}:${BRANCH}-${env.BUILD_ID}").push()
+                                docker.image("${env.BACKEND_ECR}:${BRANCH}-latest").push()
+                            }
                         }
                     }else{
                         sh exit 0          

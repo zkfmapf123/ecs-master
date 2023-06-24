@@ -98,6 +98,7 @@ docker run \
 --name jenkins_container \
 -p 8080:8080 \
 -v jenkins_file:/var/jenkins_home \
+-v /var/run/docker.sock:/var/run/docker.sock \
 --restart always \
 jenkins
 ```
