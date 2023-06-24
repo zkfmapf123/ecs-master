@@ -1,6 +1,12 @@
 {
-  "name": "",
-  "ami": "",
-  "type": "",
-  "ssh_public_path": ""
+  "jenkins": {
+    "ami": "ami-0c9c942bd7bf113a2",
+    "type": "t3.small",
+    "ssh_public_path": "~/.ssh/id_rsa.pub",
+    "ssh_private_path": "~/.ssh/id_rsa",
+    "ssh_name": "jenkins-ssh",
+    "is_public": true,
+    "depends_on_subnet_az": "ap-northeast-2a",
+    "depends_on_security_group_name": ["jenkins-sg"]
+  }
 }

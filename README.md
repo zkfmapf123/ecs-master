@@ -22,6 +22,86 @@
   - EC2 Type
     - 그냥 EC2 + Auto Scaling
 
+## Jenkins Docker 설치
+
+- docker 설치 ubuntu
+
+```
+  sudo apt-get update
+
+sudo apt-get install -y \
+ ca-certificates \
+ curl \
+ gnupg \
+ lsb-release
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo \
+ "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+ $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+docker verision
+```
+
+- user, group 추가
+
+```
+  sudo groupadd -g <docker-group-id> docker_group
+  sudo useradd -u 1000 -g <docker-group-id> -m -s /bin/bash docker_user
+```
+
+- Docker volume 추가
+
+```
+  chmod 777 /var/run/docker.sock
+  docker volume create jenkins_file
+```
+
+- Dockerfile 실행
+
+```Dockerfile
+
+## Dockerfile.jenkins
+FROM jenkins/jenkins:lts
+
+USER root
+
+RUN apt-get update \
+ && apt-get -y install lsb-release \
+ && curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
+ && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null \
+ && apt-get update \
+ && apt-get -y install docker-ce docker-ce-cli containerd.io
+
+## if user_id = 1111
+## if group_id = 1111
+## ARG 형태로 진행해도 됨
+
+RUN usermod -u 1111 jenkins && \
+    groupmod -g 1111 docker && \
+    usermod -aG docker jenkins
+
+USER jenkins
+```
+
+- Docker run
+
+```
+docker build -f Dockerfile.jenkins -t jenkins .
+
+docker run \
+-d \
+--name jenkins_container \
+-p 8080:8080 \
+-v jenkins_file:/var/jenkins_home \
+--restart always \
+jenkins
+```
+
 ## Reference
 
 ![Jenkins_branch](./server/README.md)
