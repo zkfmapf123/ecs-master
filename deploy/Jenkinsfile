@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        BRANCH = ""
+    }
+
     stages {
         stage("what is git branch") {
             steps {
