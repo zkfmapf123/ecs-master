@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    env {
+    environment {
         BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
     }
 
