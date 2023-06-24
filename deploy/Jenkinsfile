@@ -46,7 +46,7 @@ pipeline {
             post {
                 success {
                     slackSend (
-                        channel: params.CD_CHANNLE,
+                        channel: params.CD_CHANNEL,
                         color: "good",
                         message: " ${env.BUILD_ID} Build Success ${env.GIT_BRANCH} "
                     )
@@ -54,7 +54,7 @@ pipeline {
 
                 failure {
                     slackSend (
-                        channel: params.CD_CHANNLE,
+                        channel: params.CD_CHANNEL,
                         color: "danger",
                         message: " ${env.BUILD_ID} Build Failed ${env.GIT_BRANCH} "
                     )
@@ -65,7 +65,7 @@ pipeline {
         stage("CD End") {
             steps {
                 slackSend (
-                    channel: params.CD_CHANNLE,
+                    channel: params.CD_CHANNEL,
                     color: "good",
                     message: "------------ ${env.BUILD_ID} Jenkins End ${env.GIT_BRANCH} ----------"
                 )
