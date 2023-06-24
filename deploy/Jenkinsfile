@@ -17,7 +17,7 @@ pipeline {
         stage("CD Start") {
             steps {
                 slackSend (
-                    channel: params.CD_CHANNLE,
+                    channel: params.CD_CHANNEL,
                     color: "good",
                     message: "------------ ${env.BUILD_ID} Jenkins Start ${env.GIT_BRANCH} ----------"
                 )
