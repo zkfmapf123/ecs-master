@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage("what is git branch") {
             steps {
-                BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
+                env.BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
                 echo BRANCH
             }
         }
