@@ -9,9 +9,9 @@ pipeline {
                     def BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
 
                     if (BRANCH == "frontend") {
-                        echo "===== frontend ==== "
+                        echo "===== frontend ===="
                     }else if(BRANCH == "backend"){
-                        echo "===== backend ==== "
+                        echo "===== backend ===="
                     }else{
                         sh exit 0   
                     }
