@@ -4,23 +4,23 @@ pipeline {
     stages {
         stage("what is git branch") {
             steps {
-                env.BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
+                BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
                 echo BRANCH
             }
         }
 
-        stage("build image"){
-            steps {
-                script {
-                    if (env.BRANCH == "frontend") {
-                        echo "===== frontend ==== "
-                    }else if(env.BRANCH == "backend"){
-                        echo "===== backend ==== "
-                    }else{
-                        sh exit 0
-                    }
-                }
-            }
-        }
+        // stage("build image"){
+        //     steps {
+        //         script {
+        //             if (env.BRANCH == "frontend") {
+        //                 echo "===== frontend ==== "
+        //             }else if(env.BRANCH == "backend"){
+        //                 echo "===== backend ==== "
+        //             }else{
+        //                 sh exit 0
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
