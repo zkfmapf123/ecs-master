@@ -5,14 +5,21 @@ pipeline {
         string(name: "CD_CHANNEL", defaultValue: "#jenkins-slack-notification", description: "cd channel")
     }
 
+    environment {
+        //Frontend
+        FRONT_ECR="182024812696.dkr.ecr.ap-northeast-2.amazonaws.com/front-repo"
+
+        //Backend
+        BACKEND_ECR="182024812696.dkr.ecr.ap-northeast-2.amazonaws.com/backend-repo"
+    }
+
     stages {
         stage("CD Start") {
             steps {
                 slackSend (
                     channel: params.CD_CHANNLE,
                     color: "good",
-                    message: "------------ Jenkins Start ${env.GIT_BRANCH} ----------"
-
+                    message: "------------ ${env.BUILD_ID} Jenkins Start ${env.GIT_BRANCH} ----------"
                 )
             }
         }
@@ -23,13 +30,45 @@ pipeline {
                     def BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
 
                     if (BRANCH == "frontend") {
-                        
+                        dir("front") {
+                            docker.build("${env.FRONT_ECR}:${BRANCH}-${env.BUILD_ID}").tag("${BRANCH}-latest")
+                        }
                     }else if(BRANCH == "backend"){
-                        echo "===== backend ===="
+                        dir("server") {
+                            docker.build("${env.BACKEND_ECR}:${BRANCH}-${env.BUILD_ID}").tag("${BRANCH}-latest")
+                        }
                     }else{
                         sh exit 0          
                     }
                 }
+            }
+
+            post {
+                success {
+                    slackSend (
+                    channel: params.CD_CHANNLE,
+                    color: "good",
+                    message: " ${env.BUILD_ID} Build Success ${env.GIT_BRANCH} "
+                )
+                }
+
+                failure {
+                    slackSend (
+                    channel: params.CD_CHANNLE,
+                    color: "good",
+                    message: " ${env.BUILD_ID} Build Failed ${env.GIT_BRANCH} "
+                )
+                }
+            }
+        }
+
+        stage("CD Start") {
+            steps {
+                slackSend (
+                    channel: params.CD_CHANNLE,
+                    color: "good",
+                    message: "------------ ${env.BUILD_ID} Jenkins End ${env.GIT_BRANCH} ----------"
+                )
             }
         }
     }
