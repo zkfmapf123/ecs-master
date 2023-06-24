@@ -13,6 +13,7 @@ pipeline {
                     }else if(BRANCH == "backend"){
                         echo "===== backend ==== "
                     }else{
+                        
                         sh exit 0
                     }
                 }
