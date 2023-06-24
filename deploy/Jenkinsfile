@@ -1,15 +1,11 @@
 pipeline {
     agent any
 
-    environment {
-        BRANCH = ""
-    }
-
     stages {
         stage("what is git branch") {
             steps {
-                env.BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
-                echo env.BRANCH
+                BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
+                echo BRANCH
             }
         }
 
