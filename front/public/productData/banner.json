@@ -1,0 +1,9 @@
+{
+  "banners": {
+    "/": "/images/top.png",
+    "home": "/images/top.png",
+    "HIJAB": "/images/hijab.png",
+    "DRESS": "/images/dress.png",
+    "BOTTOM": "images/bottom.png"
+  }
+}

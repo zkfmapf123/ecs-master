@@ -1,0 +1,242 @@
+{
+  "flugo": [
+    {
+      "id": 0,
+      "category": "HIJAB",
+      "name": " A-HIJAB1🔥",
+      "desc": "This product is made of linen",
+      "price": 81,
+      "currency": "Rp",
+      "purchase_count": 1000,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/hijab.png"
+    },
+    {
+      "id": 1,
+      "category": "HIJAB",
+      "name": "B-HIJAB1🔥",
+      "desc": "This product is made of linen",
+      "price": 63,
+      "currency": "Rp",
+      "purchase_count": 23400,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/hijab1.png"
+    },
+    {
+      "id": 2,
+      "category": "HIJAB",
+      "name": "C-HIJAB1🔥",
+      "desc": "This product is made of linen",
+      "price": 61,
+      "currency": "Rp",
+      "purchase_count": 1001240,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/hijab2.png"
+    },
+    {
+      "id": 89,
+      "category": "HIJAB",
+      "name": "D-HIJAB1🔥",
+      "desc": "This product is made of linen",
+      "price": 10,
+      "currency": "Rp",
+      "purchase_count": 102300,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/hijab3.png"
+    },
+    {
+      "id": 4,
+      "category": "HIJAB",
+      "name": "E-HIJAB1🔥",
+      "desc": "This product is made of linen",
+      "price": 10,
+      "currency": "Rp",
+      "purchase_count": 10867800,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/hijab4.png"
+    },
+    {
+      "id": 5,
+      "category": "HIJAB",
+      "name": "F-HIJAB1🔥",
+      "desc": "This product is made of linen",
+      "price": 40,
+      "currency": "Rp",
+      "purchase_count": 123000,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/hijab5.png"
+    },
+    {
+      "id": 6,
+      "category": "HIJAB",
+      "name": "G-HIJAB1🔥",
+      "desc": "This product is made of linen",
+      "price": 60,
+      "currency": "Rp",
+      "purchase_count": 1012312300,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/hijab6.png"
+    },
+    {
+      "id": 7,
+      "category": "HIJAB",
+      "name": "H-HIJAB1🔥",
+      "desc": "This product is made of linen",
+      "price": 80,
+      "currency": "Rp",
+      "purchase_count": 1456000,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/hijab7.png"
+    },
+    {
+      "id": 8,
+      "category": "HIJAB",
+      "name": "I-HIJAB1🔥",
+      "desc": "This product is made of linen",
+      "price": 110,
+      "currency": "Rp",
+      "purchase_count": 108978900,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/hijab8.png"
+    },
+    {
+      "id": 9,
+      "category": "HIJAB",
+      "name": "J-HIJAB1🔥",
+      "desc": "This product is made of linen",
+      "price": 90,
+      "currency": "Rp",
+      "purchase_count": 100560,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/hijab9.png"
+    },
+    {
+      "id": 10,
+      "category": "HIJAB",
+      "name": "K-HIJAB1🔥",
+      "desc": "This product is made of linen",
+      "price": 310,
+      "currency": "Rp",
+      "purchase_count": 1034500,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/hijab10.png"
+    },
+    {
+      "id": 11,
+      "category": "BOTTOM",
+      "name": "BOTTOM",
+      "desc": "This product is made of cotton",
+      "price": 122,
+      "currency": "Rp",
+      "purchase_count": 2500,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/bottom.png"
+    },
+    {
+      "id": 12,
+      "category": "BOTTOM",
+      "name": "BOTTOM1",
+      "desc": "This product is made of cotton",
+      "price": 152,
+      "currency": "Rp",
+      "purchase_count": 2500,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/bottom1.png"
+    },
+    {
+      "id": 13,
+      "category": "BOTTOM",
+      "name": "BOTTOM2",
+      "desc": "This product is made of cotton",
+      "price": 154,
+      "currency": "Rp",
+      "purchase_count": 2500,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/bottom2.png"
+    },
+    {
+      "id": 14,
+      "category": "DRESS",
+      "name": "DRESS",
+      "desc": "This product is very comfortable",
+      "price": 2220,
+      "currency": "Rp",
+      "purchase_count": 500,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/dress.png"
+    },
+    {
+      "id": 15,
+      "category": "DRESS",
+      "name": "DRESS1",
+      "desc": "This product is very comfortable",
+      "price": 823,
+      "currency": "Rp",
+      "purchase_count": 2000,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/dress1.png"
+    },
+    {
+      "id": 16,
+      "category": "DRESS",
+      "name": "DRESS2",
+      "desc": "This product is very comfortable",
+      "price": 2340,
+      "currency": "Rp",
+      "purchase_count": 500,
+      "attribute": {
+        "colors": ["red", "blue", "yellow"],
+        "sizes": ["S", "M", "L", "XL"]
+      },
+      "thumbnail": "/images/dress2.png"
+    }
+  ]
+}
