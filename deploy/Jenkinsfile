@@ -1,7 +1,21 @@
 pipeline {
     agent any
 
+    parameters (
+        string(name: "CD_CHANNEL", defaultValue: "#jenkins-slack-notification", description: "cd channel")
+    )
+
     stages {
+        stage("CD Start") {
+            steps {
+                slackSend (
+                    channel: params.CD_CHANNLE,
+                    color: "good",
+                    message: "------------ Jenkins Start ${env.GIT_BRANCH} ----------"
+
+                )
+            }
+        }
 
         stage("build image"){
             steps {
@@ -9,7 +23,7 @@ pipeline {
                     def BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
 
                     if (BRANCH == "frontend") {
-                        echo "===== frontend ===="
+                        
                     }else if(BRANCH == "backend"){
                         echo "===== backend ===="
                     }else{
