@@ -2,25 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage("what is git branch") {
+
+        stage("build image"){
             steps {
-                BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
-                echo BRANCH
+                script {
+                    def BRANCH = env.GIT_BRANCH.tokenize('/')[-1]
+
+                    if (BRANCH == "frontend") {
+                        echo "===== frontend ==== "
+                    }else if(BRANCH == "backend"){
+                        echo "===== backend ==== "
+                    }else{
+                        sh exit 0
+                    }
+                }
             }
         }
-
-        // stage("build image"){
-        //     steps {
-        //         script {
-        //             if (env.BRANCH == "frontend") {
-        //                 echo "===== frontend ==== "
-        //             }else if(env.BRANCH == "backend"){
-        //                 echo "===== backend ==== "
-        //             }else{
-        //                 sh exit 0
-        //             }
-        //         }
-        //     }
-        // }
     }
 }
