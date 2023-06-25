@@ -25,15 +25,6 @@ module "vpc" {
   config_json = jsondecode(file("./config/vpc.json"))
 }
 
-#### Container #####
-module "container" {
-  source = "./modules/container"
-
-  region      = var.region
-  env         = var.env
-  config_json = jsondecode(file("./config/container.json"))
-}
-
 #### Security ####
 module "security_groups" {
   source = "./modules/security_groups"
@@ -43,6 +34,28 @@ module "security_groups" {
   config_json = jsondecode(file("./config/security_group.json"))
   vpc_id      = module.vpc.id
 }
+
+#### ACM ####
+module "acm" {
+    source = "./modules/acm"
+
+    region = var.region
+    env = var.env
+    config_json = jsondecode(file("./config/acm.json"))
+}
+
+#### Container #####
+module "container" {
+  source = "./modules/container"
+
+  region      = var.region
+  env         = var.env
+  config_json = jsondecode(file("./config/container.json"))
+
+  vpc = module.vpc
+  sg  = module.security_groups.sg
+}
+
 
 #### EC2 ####
 module "ec2" {
@@ -57,8 +70,8 @@ module "ec2" {
 }
 
 output "all_output" {
-    value = {
-        vpc = module.vpc,
-        sg = module.security_groups.sg
-    }
+  value = {
+    vpc = module.vpc,
+    sg  = module.security_groups.sg
+  }
 }
