@@ -1,14 +1,10 @@
 {
   "backend-repo": {
     "prefix": "backend",
-    "task_definition": {
-      "execution_role_arn": "arn:aws:iam::182024812696:role/ecsTaskExecutionRole",
-      "task_role_arn": "arn:aws:iam::182024812696:role/ecsTaskExecutionRole"
-    }
+    "depends_on_sg": ["backend-alb-sg"]
   },
   "front-repo": {
     "prefix": "front",
-    "execution_role_arn": "arn:aws:iam::182024812696:role/ecsTaskExecutionRole",
-    "task_role_arn": "arn:aws:iam::182024812696:role/ecsTaskExecutionRole"
+    "depends_on_sg": ["front-alb-sg"]
   }
 }

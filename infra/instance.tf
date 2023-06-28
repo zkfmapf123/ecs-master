@@ -69,6 +69,14 @@ module "ec2" {
   sg  = module.security_groups.sg
 }
 
+#### iam ####
+module "iam" {
+  source = "./modules/iam"  
+
+  region = var.region
+  ecr = module.ecr.ecr
+}
+
 module "ecs" {
   source = "./modules/ecs"
 
@@ -78,14 +86,16 @@ module "ecs" {
 
   vpc = module.vpc
   ecr = module.ecr.ecr
+  iam = module.iam.iam
+  sg = module.security_groups.sg
 }
-
-
 
 output "all_output" {
   value = {
-    vpc = module.vpc,
+    vpc = module.vpc
     sg  = module.security_groups.sg
     ecr = module.ecr.ecr
+    # iam = module.iam.iam
+    # ecs = module.ecs.ecs
   }
 }

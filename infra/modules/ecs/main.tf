@@ -4,6 +4,8 @@ variable "config_json" {}
 
 variable "vpc" {}
 variable "ecr" {}
+variable "iam" {}
+variable "sg" {}
 
 
 ################################# ECS Clsuter #################################
@@ -64,15 +66,22 @@ resource "aws_ecs_task_definition" "task_definition" {
     for_each = var.config_json
 
     family = "${each.key}-family"
-    execution_role_arn = each.value.execution_role_arn
-    task_role_arn = each.value.task_role_arn
-    network_mode = "aws_vpc"
+    requires_compatibilities = ["FARGATE"]
+    cpu = 1024
+    memory = 2048
+
+    execution_role_arn = var.iam.task_execution_role
+    task_role_arn = var.iam.task_role
+    network_mode = "awsvpc"
 
     container_definitions = jsonencode([
         {
             name = "${each.key}"
-            image = join("",[lookup(var.ecr,each.key),":",split("-", each.key)[0], "-latest"])
-            portMapping: [
+            image = join("",[lookup(var.ecr,each.key),":",split("-", each.key)[0] == "front" ? "frontend" : split("-", each.key)[0], "-latest"])
+            cpu  = 1024
+            memory = 2048
+            essential = true
+            portMappings: [
                 {
                     "containerPort" : 3000,
                     "hostPort" : 3000,
@@ -81,4 +90,28 @@ resource "aws_ecs_task_definition" "task_definition" {
             ]
         }
     ])
+}
+
+################################# Service #################################
+resource "aws_ecs_service" "service" {
+    for_each = var.config_json
+
+    launch_type = "FARGATE"
+    name = "${each.key}-service"
+    cluster = lookup(aws_ecs_cluster.cluster, each.key).arn
+    task_definition = lookup(aws_ecs_task_definition.task_definition, each.key).arn
+    desired_count = 1
+
+    network_configuration {
+      assign_public_ip = true
+      subnets = values(var.vpc.public_subnets)
+      security_groups = [
+        for sg in each.value.depends_on_sg:
+            lookup(var.sg, sg)
+      ]
+    }
+}
+
+output "ecs"{
+    value = "ecs"
 }
