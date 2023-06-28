@@ -33,6 +33,17 @@
       }
     ]
   },
+  "front-ecs-sg": {
+    "description": "front-ecs-sg",
+    "ingress": [
+      {
+        "from_port": 3000,
+        "to_port": 3000,
+        "protocol": "tcp",
+        "cidr_blocks": ["0.0.0.0/0"]
+      }
+    ]
+  },
   "backend-alb-sg": {
     "description": "backend-alb-sg",
     "ingress": [
@@ -45,6 +56,17 @@
       {
         "from_port": 443,
         "to_port": 443,
+        "protocol": "tcp",
+        "cidr_blocks": ["0.0.0.0/0"]
+      }
+    ]
+  },
+  "backend-ecs-sg": {
+    "description": "backend-ecs-sg",
+    "ingress": [
+      {
+        "from_port": 3000,
+        "to_port": 3000,
         "protocol": "tcp",
         "cidr_blocks": ["0.0.0.0/0"]
       }

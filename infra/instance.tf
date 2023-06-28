@@ -36,13 +36,13 @@ module "security_groups" {
 }
 
 #### ACM ####
-module "acm" {
-    source = "./modules/acm"
+# module "acm" {
+#     source = "./modules/acm"
 
-    region = var.region
-    env = var.env
-    config_json = jsondecode(file("./config/acm.json"))
-}
+#     region = var.region
+#     env = var.env
+#     config_json = jsondecode(file("./config/acm.json"))
+# }
 
 #### Container #####
 module "container" {
@@ -71,7 +71,8 @@ module "ec2" {
 
 output "all_output" {
   value = {
-    vpc = module.vpc,
-    sg  = module.security_groups.sg
+    vpc       = module.vpc,
+    sg        = module.security_groups.sg
+    container = module.container
   }
 }
