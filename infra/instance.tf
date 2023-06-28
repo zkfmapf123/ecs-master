@@ -77,6 +77,7 @@ module "ecs" {
   config_json = jsondecode(file("./config/container.json"))
 
   vpc = module.vpc
+  ecr = module.ecr.ecr
 }
 
 

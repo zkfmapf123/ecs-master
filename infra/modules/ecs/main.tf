@@ -1,7 +1,9 @@
 variable "region" {}
 variable "env" {}
 variable "config_json" {}
+
 variable "vpc" {}
+variable "ecr" {}
 
 
 ################################# ECS Clsuter #################################
@@ -15,6 +17,7 @@ resource "aws_cloudwatch_log_group" "log_group" {
 }
 
 ## ECS Cluster를 만들면 -> vpc가 기본값으로 지정이 된다.
+## ECS Service에 network_configuration 블록을 지정할 수 있다.
 resource "aws_ecs_cluster" "cluster" {
     for_each = var.config_json
 
@@ -56,3 +59,26 @@ resource "aws_ecs_cluster_capacity_providers" "cluster_provider" {
   }
 }
 
+################################# Task Definition #################################
+resource "aws_ecs_task_definition" "task_definition" {
+    for_each = var.config_json
+
+    family = "${each.key}-family"
+    execution_role_arn = each.value.execution_role_arn
+    task_role_arn = each.value.task_role_arn
+    network_mode = "aws_vpc"
+
+    container_definitions = jsonencode([
+        {
+            name = "${each.key}"
+            image = join("",[lookup(var.ecr,each.key),":",split("-", each.key)[0], "-latest"])
+            portMapping: [
+                {
+                    "containerPort" : 3000,
+                    "hostPort" : 3000,
+                    "protocol" : "tcp" 
+                }
+            ]
+        }
+    ])
+}
