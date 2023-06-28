@@ -57,7 +57,7 @@ module "ecr" {
 }
 
 
-#### EC2 ####
+#### Jenkins EC2 ####
 module "ec2" {
   source = "./modules/ec2"
 
@@ -69,10 +69,22 @@ module "ec2" {
   sg  = module.security_groups.sg
 }
 
+module "ecs" {
+  source = "./modules/ecs"
+
+  region      = var.region
+  env         = var.env
+  config_json = jsondecode(file("./config/container.json"))
+
+  vpc = module.vpc
+}
+
+
+
 output "all_output" {
   value = {
-    vpc       = module.vpc,
-    sg        = module.security_groups.sg
+    vpc = module.vpc,
+    sg  = module.security_groups.sg
     ecr = module.ecr.ecr
   }
 }

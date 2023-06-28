@@ -1,28 +1,8 @@
 {
   "backend-repo": {
-    "prefix": "backend",
-    "alb": {
-      "name": "ecs-back-alb",
-      "depends_on_sg": "backend-alb-sg",
-      "internal": false,
-      "is_public": true
-    },
-    "target-group": {
-      "port": 3000,
-      "protocol": "HTTP"
-    }
+    "prefix": "backend"
   },
   "front-repo": {
-    "prefix": "front",
-    "alb": {
-      "name": "ecs-front-alb",
-      "depends_on_sg": "front-alb-sg",
-      "internal": false,
-      "is_public": true
-    },
-    "target-group": {
-      "port": 3000,
-      "protocol": "HTTP"
-    }
+    "prefix": "front"
   }
 }
