@@ -45,8 +45,8 @@ module "security_groups" {
 # }
 
 #### Container #####
-module "container" {
-  source = "./modules/container"
+module "ecr" {
+  source = "./modules/ecr"
 
   region      = var.region
   env         = var.env
@@ -73,6 +73,6 @@ output "all_output" {
   value = {
     vpc       = module.vpc,
     sg        = module.security_groups.sg
-    container = module.container
+    ecr = module.ecr.ecr
   }
 }
