@@ -77,6 +77,7 @@ module "iam" {
   ecr = module.ecr.ecr
 }
 
+#### ecs ####
 module "ecs" {
   source = "./modules/ecs"
 
@@ -90,12 +91,24 @@ module "ecs" {
   sg = module.security_groups.sg
 }
 
+#### ALB ####
+module "alb" {
+  source ="./modules/alb"
+
+  region = var.region
+  env = var.env
+  config_json = jsondecode(file("./config/container.json"))
+
+  vpc = module.vpc
+  sg = module.security_groups.sg
+}
+
 output "all_output" {
   value = {
     vpc = module.vpc
     sg  = module.security_groups.sg
     ecr = module.ecr.ecr
-    # iam = module.iam.iam
-    # ecs = module.ecs.ecs
+    iam = module.iam.iam
+    ecs = module.ecs.ecs
   }
 }
